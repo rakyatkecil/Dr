@@ -1,0 +1,50 @@
+--- 
+title: "Dasar Pemrograman R"
+author: "dimas"
+date: "`r Sys.Date()`"
+site: "bookdown::bookdown_site"
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+---
+
+# Pengantar R
+
+R adalah salah satu bahasa pemrograman yang khusus dirancang dalam menggunakan metode-metode statistika. Program R memberikan banyak kemudahan bagi pemula yang ingin memulai belajar pemrograman. Walaupun program R adalah open source, namun dengan library yang sangat lengkap membuat program R menjadi mampu digunakan untuk mengolah data dengan motode yang lengkap.
+
+## Pendefinisian Objek
+
+Objek merupakan sebuah wadah untuk menyimpan informasi yang telah didefinisikan oleh pengguna R. Penyimpanan informasi ke dalam sebuah objek memberikan kemudahan bagi pengguna R untuk memanggil informasi yang sama berulang kali hanya dengan memanggil objeknya saja. Seringkali sebuah informasi memiliki banyak komponen, sehingga jika harus memanggilnya berulang kali akan menjadi sangat tidak efektif. Sehingga dengan mendefinisikannya ke dalam sebuah objek akan mempercepat proses pengerjaannya.
+
+Terdapat beberapa cara dalam mendefinisikan objek pada R seperti yang tersajikan pada tabel berikut:
+
+```{r, echo=FALSE}
+Operator = c("<-, <<-, =", "->, ->>")
+Operasi = c("Mendefinisikan objek sebelah kiri",
+            "Mendefinisikan objek sebelah kanan")
+x <- data.frame(Operator, Operasi)
+knitr::kable(
+  x,
+  booktabs = TRUE,
+  caption = "Operator Pendefinisian Objek pada R"
+)
+```
+
+Contoh penggunaannya adalah sebagai berikut:
+
+```{r}
+x <- 4
+y <- c(1, 4, 6, 8, 5)
+z <- c("Indonesia", "Raya")
+```
+```{r}
+x
+y
+z
+```
+## Paket (Package)
+

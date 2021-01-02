@@ -1,0 +1,174 @@
+# Plot dengan `ggplot2`
+
+Plot adalah salah satu hal mendasar yang dapat digunakan untuk menggambarkan distribusi data. Program R pun memiliki perintah - perintah untuk membuat sebuah plot. Namun perintah - perintah tersebut masih merupakan perintah yang sederhana. Hasilnya, gambar kurang menarik untuk disajikan pada khalayak umum. 
+
+`ggplot2` merupakan sebuah paket yang dapat digunakan pada program R dengan cara melakukan instalasi terlebih dahulu menggunakan perintah `install.package("ggplot2")`. Paket `ggplot2` memberikan fasilitas bagi penggunanya dalam membuat sebuah plot yang menarik untuk dilihat. Setelah anda memahami jenis-jenis plot beserta cara penggunaannya, kita dapat menggunakan paket `ggpubr` yang telah disusun khusus untuk kebutuhan publikasi/penerbitan.
+
+Setelah instalasi paket `ggplot2` selesai, selanjutnya kita dapat memanggil paket tersebut dengan perintah
+```{r}
+library(ggplot2)
+```
+
+## Bar Plot
+Grafik batang merupakan grafik yang digunakan untuk menunjukkan frekuensi dari dara. Grafik batang lebih sering digunakan untuk menunjukkan perbedaan jumlah dari data yang bertipe kategorik seperti jenis kelamin, asal daerah, status perniahan, dsb. Selanjutnya kita akan membuat sebuah grafik batang dengan menggunakan data berikut:
+```{r}
+jpc <- c(34, 25, 69, 40, 30, 32, 45)
+hr  <- c("Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min")
+x   <- data.frame(Hari = hr, Pasien = jpc)
+x
+```
+
+Terdapat perintah `barplot` dalam `R` yang merupakan perintah yang sudah tersedia saat melakukan instalasi `R`. Walapun perintah `barplot` dapat kita gunakan, namun hasil yang diberikan sangat sederhana dan lebih cocok digunakan untuk sebuah laporan. Berikut adalah cara menggunakan perintah `barplot`:
+```{r}
+barplot(x$Pasien, 
+        names.arg = x$Hari)
+```
+
+Selanjutnya kita akan menggunakan paket `ggplot2` untuk menyajikan grafik batang yang lebih menarik. Berikut adalah perintah untuk membuat grafik batang dengan menggunakan paket `ggplot2`:
+```{r}
+p <- ggplot(x, aes(Hari)) + 
+  geom_bar(aes(weight=Pasien, fill=Hari, colour=Hari)) +
+  theme_bw()
+p
+```
+
+penjelasan:
+
+* `ggplot(x, aes(Hari))` adalah perintah untuk membuat sebuah objek `ggplot` dari variabel `Hari` pada data `x`
+* `geom_bar(aes(weight=Pasien, fill=Hari, colour=Hari))`
+  - `geom_bar()` adalah perintah untuk membuat grafik batang menggunakan `ggplot`
+  - `weight` adalah banyak datanya (dalam kasus yang kita kerjakan: banyaknya Pasien setiap hari)
+  - `fill` bertujuan untuk memberi warna batang (harus sama dengan `aes(Hari)` pada `ggplot` agar setiap batang memiliki warna yang berbeda)
+  - `colour` bertujuan untuk memberi warna garis (harus sama dengan `aes(Hari)` pada `ggplot` agar setiap batang memiliki warna yang berbeda)
+* `theme_bw()` bertujuan untuk menentukan tema `black and white` pada grafik
+
+## Grafik Histogram 
+Histogram merupakan grafik batang yang dapat menunjukkan seberapa sering suatu nilai yang berbeda terjadi. Histogram lebih sering digunakan untuk melihat distribusi dari suatu data. Berbeda dengan grafik batang, kita perlu menggunakan data numerik dalam membuat sebuah histogram. Berikut adalah data acak yang dibangkitkan dengan perintah `rnorm`:
+```{r}
+data <- data.frame(x = rnorm(100,5,2))
+```
+
+Kita dapat menggunakan perintah `hist` yang telah tersedia saat melakukan instalasi `R`.
+```{r}
+hist(data$x)
+```
+
+Selanjutnya kita akan menggunakan perintah yang tersedia pada paket `ggplot2`.
+```{r}
+p <- ggplot(data, aes(x)) + 
+  geom_histogram(binwidth = 1, 
+                 color = "white", 
+                 fill= "darkred") +
+  theme_bw()
+p
+```
+
+penjelasan:
+* `ggplot(data, aes(x))` adalah perintah untuk membuat sebuah objek `ggplot` dari objek `x` pada data `data`
+* `geom_histogram(binwidth = 1, color = "white", fill= "darkred")`
+  - `geom_histogram()` adalah perintah untuk membuat histogram menggunakan `ggplot`
+  - `bandwidth` adalah lebar dari masing-masing batang
+  - `fill` bertujuan untuk memberi warna batang (dalam kasus ini kita akan berikan warna yang sama untuk semua batang)
+  - `colour` bertujuan untuk memberi warna garis (dalam kasus ini kita akan berikan warna yang sama untuk semua garis)
+* `theme_bw()` bertujuan untuk menentukan tema `black and white` pada plot
+
+Selanjutnya bandingkan dengan histogram yang memiliki `bandwith` berbeda.
+```{r}
+p <- ggplot(data, aes(x)) + 
+  geom_histogram(binwidth = 3, 
+                 color = "white", 
+                 fill= "darkred") +
+  theme_bw()
+p
+```
+
+## Pie Plot
+
+```{r}
+jumlah <- c(23, 57, 20)
+label <- c("Setuju", "Tidak setuju", "Tidak tahu")
+x <- data.frame(label, jumlah)
+```
+
+Menggunakan perintah `pie`
+```{r}
+pie(x$jumlah, labels = x$label)
+```
+
+Menggunakan paket `ggplot2`
+```{r}
+p <- ggplot(x, aes(x="", y=jumlah, fill=label)) +
+  geom_bar(width = 1, stat = "identity")
+p + coord_polar("y", start = 0)
+```
+
+penjelasan:
+
+
+## Box Plot
+
+```{r}
+x <- rnorm(250, 9, 3)
+y <- rnorm(250, 4, 1)
+z <- rnorm(250, 11, 6)
+```
+
+Menggunakan perintah `boxplot`
+```{r, fig.show="hold"}
+boxplot(x, y, z,
+        names = c("x", "y", "z"))
+```
+
+Menggunakan paket `ggplot2`
+```{r}
+data <- data.frame(label = c(rep(c("x","y","z"),
+                                 each=250)),
+                   value = c(x, y, z))
+head(data)
+p <- ggplot(data, aes(x=label, y=value)) +
+  geom_boxplot(outlier.colour = "red") +
+  theme_bw()
+p
+```
+
+## Line Plot
+
+```{r}
+x <- c(23, 57, 20)
+names(x) <- c("Setuju", "Tidak setuju", "Tidak tahu")
+```
+
+Menggunakan perintah `pie`
+```{r}
+plot(x, type = "o")
+```
+
+Menggunakan paket `ggplot2`
+
+## Scatter Plot
+
+```{r}
+x <- c(23, 57, 20)
+names(x) <- c("Setuju", "Tidak setuju", "Tidak tahu")
+```
+
+Menggunakan perintah `pie`
+```{r}
+pie(x, labels = names(x))
+```
+
+Menggunakan paket `ggplot2`
+
+## Area Plot
+
+```{r}
+x <- c(23, 57, 20)
+names(x) <- c("Setuju", "Tidak setuju", "Tidak tahu")
+```
+
+Menggunakan perintah `pie`
+```{r}
+pie(x, labels = names(x))
+```
+
+Menggunakan paket `ggplot2`
