@@ -32,7 +32,7 @@
   
   
 
-<link rel="next" href="intro.html"/>
+<link rel="next" href="pengantar-r.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -137,11 +137,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Dasar-dasar Pemrograman R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Pengantar R</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#pendefinisian-objek"><i class="fa fa-check"></i><b>1.1</b> Pendefinisian Objek</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#paket-package"><i class="fa fa-check"></i><b>1.2</b> Paket (Package)</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Dasar - dasar Pemrograman R</a></li>
+<li class="chapter" data-level="2" data-path="pengantar-r.html"><a href="pengantar-r.html"><i class="fa fa-check"></i><b>2</b> Pengantar R</a><ul>
+<li class="chapter" data-level="2.1" data-path="pengantar-r.html"><a href="pengantar-r.html#pendefinisian-objek"><i class="fa fa-check"></i><b>2.1</b> Pendefinisian Objek</a></li>
+<li class="chapter" data-level="2.2" data-path="pengantar-r.html"><a href="pengantar-r.html#paket-package"><i class="fa fa-check"></i><b>2.2</b> Paket (Package)</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
 <li class="chapter" data-level="3" data-path="datatype.html"><a href="datatype.html"><i class="fa fa-check"></i><b>3</b> Tipe Data</a><ul>
 <li class="chapter" data-level="3.1" data-path="datatype.html"><a href="datatype.html#numeric"><i class="fa fa-check"></i><b>3.1</b> Numerik (Numeric)</a></li>
 <li class="chapter" data-level="3.2" data-path="datatype.html"><a href="datatype.html#integer"><i class="fa fa-check"></i><b>3.2</b> Bilangan Bulat (Integer)</a></li>
@@ -196,47 +196,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="author"><em>dimas</em></p>
 <p class="date"><em>2021-01-02</em></p>
 </div>
-<div id="pengantar-r" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Pengantar R</h1>
-<p>R adalah salah satu bahasa pemrograman yang khusus dirancang dalam menggunakan metode-metode statistika. Program R memberikan banyak kemudahan bagi pemula yang ingin memulai belajar pemrograman. Walaupun program R adalah open source, namun dengan library yang sangat lengkap membuat program R menjadi mampu digunakan untuk mengolah data dengan motode yang lengkap.</p>
-<div id="pendefinisian-objek" class="section level2">
-<h2><span class="header-section-number">1.1</span> Pendefinisian Objek</h2>
-<p>Objek merupakan sebuah wadah untuk menyimpan informasi yang telah didefinisikan oleh pengguna R. Penyimpanan informasi ke dalam sebuah objek memberikan kemudahan bagi pengguna R untuk memanggil informasi yang sama berulang kali hanya dengan memanggil objeknya saja. Seringkali sebuah informasi memiliki banyak komponen, sehingga jika harus memanggilnya berulang kali akan menjadi sangat tidak efektif. Sehingga dengan mendefinisikannya ke dalam sebuah objek akan mempercepat proses pengerjaannya.</p>
-<p>Terdapat beberapa cara dalam mendefinisikan objek pada R seperti yang tersajikan pada tabel berikut:</p>
-<table>
-<caption><span id="tab:unnamed-chunk-1">Table 1.1: </span>Operator Pendefinisian Objek pada R</caption>
-<thead>
-<tr class="header">
-<th align="left">Operator</th>
-<th align="left">Operasi</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">&lt;-, &lt;&lt;-, =</td>
-<td align="left">Mendefinisikan objek sebelah kiri</td>
-</tr>
-<tr class="even">
-<td align="left">-&gt;, -&gt;&gt;</td>
-<td align="left">Mendefinisikan objek sebelah kanan</td>
-</tr>
-</tbody>
-</table>
-<p>Contoh penggunaannya adalah sebagai berikut:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1"></a>x &lt;-<span class="st"> </span><span class="dv">4</span></span>
-<span id="cb1-2"><a href="index.html#cb1-2"></a>y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">5</span>)</span>
-<span id="cb1-3"><a href="index.html#cb1-3"></a>z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Indonesia&quot;</span>, <span class="st">&quot;Raya&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1"></a>x</span></code></pre></div>
-<pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="index.html#cb4-1"></a>y</span></code></pre></div>
-<pre><code>## [1] 1 4 6 8 5</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1"></a>z</span></code></pre></div>
-<pre><code>## [1] &quot;Indonesia&quot; &quot;Raya&quot;</code></pre>
-</div>
-<div id="paket-package" class="section level2">
-<h2><span class="header-section-number">1.2</span> Paket (Package)</h2>
+<div id="dasar---dasar-pemrograman-r" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Dasar - dasar Pemrograman R</h1>
 
-</div>
 </div>
             </section>
 
@@ -244,7 +206,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 
-<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pengantar-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -294,6 +256,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

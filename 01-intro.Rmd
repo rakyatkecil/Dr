@@ -1,21 +1,36 @@
-# Introduction {#intro}
+# Pengantar R
 
-You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(intro). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
+R adalah salah satu bahasa pemrograman yang khusus dirancang dalam menggunakan metode-metode statistika. Program R memberikan banyak kemudahan bagi pemula yang ingin memulai belajar pemrograman. Walaupun program R adalah open source, namun dengan library yang sangat lengkap membuat program R menjadi mampu digunakan untuk mengolah data dengan motode yang lengkap.
 
-Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
+## Pendefinisian Objek
 
-```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
-par(mar = c(4, 4, .1, .1))
-plot(pressure, type = 'b', pch = 19)
-```
+Objek merupakan sebuah wadah untuk menyimpan informasi yang telah didefinisikan oleh pengguna R. Penyimpanan informasi ke dalam sebuah objek memberikan kemudahan bagi pengguna R untuk memanggil informasi yang sama berulang kali hanya dengan memanggil objeknya saja. Seringkali sebuah informasi memiliki banyak komponen, sehingga jika harus memanggilnya berulang kali akan menjadi sangat tidak efektif. Sehingga dengan mendefinisikannya ke dalam sebuah objek akan mempercepat proses pengerjaannya.
 
-Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
+Terdapat beberapa cara dalam mendefinisikan objek pada R seperti yang tersajikan pada tabel berikut:
 
-```{r nice-tab, tidy=FALSE}
+```{r, echo=FALSE}
+Operator = c("<-, <<-, =", "->, ->>")
+Operasi = c("Mendefinisikan objek sebelah kiri",
+            "Mendefinisikan objek sebelah kanan")
+x <- data.frame(Operator, Operasi)
 knitr::kable(
-  head(iris, 20), caption = 'Here is a nice table!',
-  booktabs = TRUE
+  x,
+  booktabs = TRUE,
+  caption = "Operator Pendefinisian Objek pada R"
 )
 ```
 
-You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
+Contoh penggunaannya adalah sebagai berikut:
+
+```{r}
+x <- 4
+y <- c(1, 4, 6, 8, 5)
+z <- c("Indonesia", "Raya")
+```
+```{r}
+x
+y
+z
+```
+## Paket (Package)
+
