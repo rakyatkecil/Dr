@@ -1,6 +1,12 @@
 tab:unnamed-chunk-1
 fig:nice-fig
 tab:nice-tab
+tab:unnamed-chunk-21
+tab:unnamed-chunk-23
+tab:unnamed-chunk-25
+tab:unnamed-chunk-26
+tab:unnamed-chunk-28
+tab:unnamed-chunk-29
 pengantar-r
 pendefinisian-objek
 paket-package
