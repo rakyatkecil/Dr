@@ -42,13 +42,13 @@ penjelasan:
   - `colour` bertujuan untuk memberi warna garis (harus sama dengan `aes(Hari)` pada `ggplot` agar setiap batang memiliki warna yang berbeda)
 * `theme_bw()` bertujuan untuk menentukan tema `black and white` pada grafik
 
-## Grafik Histogram 
+## Histogram 
 Histogram merupakan grafik batang yang dapat menunjukkan seberapa sering suatu nilai yang berbeda terjadi. Histogram lebih sering digunakan untuk melihat distribusi dari suatu data. Berbeda dengan grafik batang, kita perlu menggunakan data numerik dalam membuat sebuah histogram. Berikut adalah data acak yang dibangkitkan dengan perintah `rnorm`:
 ```{r}
 data <- data.frame(x = rnorm(100,5,2))
 ```
 
-Kita dapat menggunakan perintah `hist` yang telah tersedia saat melakukan instalasi `R`.
+Kita dapat menggunakan perintah `hist` yang telah tersedia pada program R saat melakukan instalasi program R.
 ```{r}
 hist(data$x)
 ```
@@ -64,6 +64,7 @@ p
 ```
 
 penjelasan:
+
 * `ggplot(data, aes(x))` adalah perintah untuk membuat sebuah objek `ggplot` dari objek `x` pada data `data`
 * `geom_histogram(binwidth = 1, color = "white", fill= "darkred")`
   - `geom_histogram()` adalah perintah untuk membuat histogram menggunakan `ggplot`
@@ -83,7 +84,7 @@ p
 ```
 
 ## Pie Plot
-
+Pie plot atau diagram lingkaran lebih sering digunaan untuk menunjukkan perbandingan antar kategori pada sebuah variabel. Berikut ini adalah data yang akan kita gunakan untuk membuat diagram lingkaran:
 ```{r}
 jumlah <- c(23, 57, 20)
 label <- c("Setuju", "Tidak setuju", "Tidak tahu")
@@ -95,18 +96,23 @@ Menggunakan perintah `pie`
 pie(x$jumlah, labels = x$label)
 ```
 
-Menggunakan paket `ggplot2`
+Selanjutnya berikut ini adalah perintah untuk membuat diagram lingkaran dengan menggunakan paket `ggplot2`
 ```{r}
 p <- ggplot(x, aes(x="", y=jumlah, fill=label)) +
-  geom_bar(width = 1, stat = "identity")
+  geom_bar(stat = "identity")
 p + coord_polar("y", start = 0)
 ```
 
 penjelasan:
 
+* `ggplot(x, aes(x="", y=jumlah, fill=label))` adalah perintah untuk membuat sebuah objek ggplot dengan data `x` dengan nilai `y` adalah jumlah dan `label` menjadi warna pembeda di setiap nilai pada `y`
+* `geom_bar(stat = "identity")`
+  - `geom_bar()` adalah perintah untuk membuat grafik batang menggunakan `ggplot`
+  - `stat = "identity"` bertujuan untuk membuat grafik batang dalam bentuk stacked bar chart
+* `coord_polar("y", start = 0)` bertujuan untuk membentuk stacked pada koordinat polar mengikuti `angle = y` dan dimulai dari titik nol `start = 0`
 
 ## Box Plot
-
+Box Plot dapat menggambarkan sebaran data yang bersifat `numerik`. Box plot dibuat dengan menggunakan nilai-nilai pada ukuran pemusatan data. Nilai-nilai tersebut ialah `1st quartile`, `median`, `3rd quartile`, dan `interquartile range`. Selanjutnya kita akan menggunakan 3 data berbeda yang bersebar normal untuk menunjukkan keunggulan dalam menggunakan box plot.
 ```{r}
 x <- rnorm(250, 9, 3)
 y <- rnorm(250, 4, 1)
@@ -114,22 +120,75 @@ z <- rnorm(250, 11, 6)
 ```
 
 Menggunakan perintah `boxplot`
-```{r, fig.show="hold"}
+```{r, fig.show="hold", out.width = "75%", out.height= "75%", fig.align = 'center'}
 boxplot(x, y, z,
         names = c("x", "y", "z"))
-```
-
-Menggunakan paket `ggplot2`
-```{r}
 data <- data.frame(label = c(rep(c("x","y","z"),
                                  each=250)),
                    value = c(x, y, z))
 head(data)
+```
+
+Menggunakan paket `ggplot2`
+```{r, out.width = "75%", out.height= "75%", fig.align = 'center'}
 p <- ggplot(data, aes(x=label, y=value)) +
   geom_boxplot(outlier.colour = "red") +
   theme_bw()
 p
 ```
+
+penjelasan:
+
+* `ggplot(data, aes(x=label, y=value))` adalah perintah untuk membuat sebuah objek ggplot dengan nilai `value` sebagai `y` dan `label` menjadi warna pembeda di setiap nilai `y` menggunaan data `data`
+* `geom_boxplot(outlier.colour = "red")`
+  - `geom_boxplot()` adalah perintah untuk membuat box plot menggunakan `ggplot`
+  - `outlier.colour = "red"` memberikan warna merah pada garis box plot (optional)
+
+Menggunakan paket `ggplot2`
+
+## Scatter Plot
+Scatter Plot (diagram pencar) merupakan grafik yang dibuat dengan tujuan untuk memasangkan 2 nilai/variabel. Diagram pencar dapat menggambarkan hubungan dari 2 nilai/variabel tersebut. Apabila titik-titik dalam diagram pencar menuju kearah kanan atas dari kiri bawah, maka terdapat hubungan yang positif dari kedua nilai/variabel begitu pula sebaliknya. Kita akan menggunakan data berikut untuk menunjukkan hubungan yang positi dan negatif dari 2 variabel.
+```{r}
+n <- 10
+r <- 0.75
+
+library(MASS)
+data_pos <- mvrnorm(n, mu=c(3, 5), Sigma=matrix(c(1, r, r, 1), nrow=2))
+x_pos <- data_pos[, 1]
+y_pos <- data_pos[, 2]
+
+data_neg <- mvrnorm(n, mu=c(3, 5), Sigma=matrix(c(1, -r, -r, 1), nrow=2))
+x_neg <- data_neg[, 1]
+y_neg <- data_neg[, 2]
+
+```
+
+Menggunakan perintah `plot` pada program R:
+```{r, out.width = "75%", out.height= "75%", fig.align = 'center'}
+plot(y_pos, x_pos)
+plot(y_neg, x_neg)
+```
+
+Gambar pertama menunjukkan adanya hubungan yang positif pada pariabel `y_pos` dan `x_pos`. Sedangkan pada gambar kedua adalah sebaliknya, yaitu hubungan yang negatif. selanjutnya kita akan membangun diagram pencar menggunakan paket `ggplot2`.
+
+```{r, out.width = "75%", out.height= "75%", fig.align = 'center'}
+data_pos <- data.frame(data_pos)
+colnames(data_pos) = c("x","y")
+p <- ggplot(data_pos, aes(x,y))
+p + geom_point(size=2) + 
+  geom_smooth(method=lm) +
+  theme_bw()
+```
+
+penjelasan:
+
+* `data_pos` adalah objek yang memuat `data_pos` baru setelah diubah kedalam bentuk `data frame`
+* `colnames()` adalah perintah untuk memberikan nama kolom/variabel pada `data frame`
+* `ggplot(data_pos, aes(x,y))` adalah perintah untuk membuat sebuah objek ggplot dengan nilai `value` sebagai `y` dan `label` menjadi warna pembeda di setiap nilai `y` menggunaan data `data`
+* `geom_point()` adalah perintah untuk membuat diagram pencar 
+  - `size=2` adalah perintah untuk mengubah ukuran titik diagram pencar menjadi sebesar 2 poin
+* `geom_smooth(method=lm)` adalah perintah untuk membuat garis regresi linier sebagai penegas hubungan antara 2 variabel (optional)
+
 
 ## Line Plot
 
@@ -143,32 +202,16 @@ Menggunakan perintah `pie`
 plot(x, type = "o")
 ```
 
-Menggunakan paket `ggplot2`
-
-## Scatter Plot
-
-```{r}
-x <- c(23, 57, 20)
-names(x) <- c("Setuju", "Tidak setuju", "Tidak tahu")
-```
-
-Menggunakan perintah `pie`
-```{r}
-pie(x, labels = names(x))
-```
-
-Menggunakan paket `ggplot2`
-
 ## Area Plot
 
 ```{r}
-x <- c(23, 57, 20)
-names(x) <- c("Setuju", "Tidak setuju", "Tidak tahu")
+data("diamonds")
+head(diamonds)
 ```
-
-Menggunakan perintah `pie`
-```{r}
-pie(x, labels = names(x))
-```
+Note: data `diamonds` adalah data yang sudah tersedia dalam program R
 
 Menggunakan paket `ggplot2`
+```{r, out.width = "75%", out.height= "75%", fig.align = 'center'}
+p <- ggplot(diamonds, aes(x = price, fill = cut))
+p + geom_area(stat = "bin")
+```

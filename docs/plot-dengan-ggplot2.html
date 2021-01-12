@@ -24,7 +24,7 @@
 <meta name="author" content="dimas" />
 
 
-<meta name="date" content="2021-01-02" />
+<meta name="date" content="2021-01-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -163,11 +163,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6" data-path="plot-dengan-ggplot2.html"><a href="plot-dengan-ggplot2.html"><i class="fa fa-check"></i><b>6</b> Plot dengan <code>ggplot2</code></a><ul>
 <li class="chapter" data-level="6.1" data-path="plot-dengan-ggplot2.html"><a href="plot-dengan-ggplot2.html#bar-plot"><i class="fa fa-check"></i><b>6.1</b> Bar Plot</a></li>
-<li class="chapter" data-level="6.2" data-path="plot-dengan-ggplot2.html"><a href="plot-dengan-ggplot2.html#grafik-histogram"><i class="fa fa-check"></i><b>6.2</b> Grafik Histogram</a></li>
+<li class="chapter" data-level="6.2" data-path="plot-dengan-ggplot2.html"><a href="plot-dengan-ggplot2.html#histogram"><i class="fa fa-check"></i><b>6.2</b> Histogram</a></li>
 <li class="chapter" data-level="6.3" data-path="plot-dengan-ggplot2.html"><a href="plot-dengan-ggplot2.html#pie-plot"><i class="fa fa-check"></i><b>6.3</b> Pie Plot</a></li>
 <li class="chapter" data-level="6.4" data-path="plot-dengan-ggplot2.html"><a href="plot-dengan-ggplot2.html#box-plot"><i class="fa fa-check"></i><b>6.4</b> Box Plot</a></li>
-<li class="chapter" data-level="6.5" data-path="plot-dengan-ggplot2.html"><a href="plot-dengan-ggplot2.html#line-plot"><i class="fa fa-check"></i><b>6.5</b> Line Plot</a></li>
-<li class="chapter" data-level="6.6" data-path="plot-dengan-ggplot2.html"><a href="plot-dengan-ggplot2.html#scatter-plot"><i class="fa fa-check"></i><b>6.6</b> Scatter Plot</a></li>
+<li class="chapter" data-level="6.5" data-path="plot-dengan-ggplot2.html"><a href="plot-dengan-ggplot2.html#scatter-plot"><i class="fa fa-check"></i><b>6.5</b> Scatter Plot</a></li>
+<li class="chapter" data-level="6.6" data-path="plot-dengan-ggplot2.html"><a href="plot-dengan-ggplot2.html#line-plot"><i class="fa fa-check"></i><b>6.6</b> Line Plot</a></li>
 <li class="chapter" data-level="6.7" data-path="plot-dengan-ggplot2.html"><a href="plot-dengan-ggplot2.html#area-plot"><i class="fa fa-check"></i><b>6.7</b> Area Plot</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -235,11 +235,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>theme_bw()</code> bertujuan untuk menentukan tema <code>black and white</code> pada grafik</li>
 </ul>
 </div>
-<div id="grafik-histogram" class="section level2">
-<h2><span class="header-section-number">6.2</span> Grafik Histogram</h2>
+<div id="histogram" class="section level2">
+<h2><span class="header-section-number">6.2</span> Histogram</h2>
 <p>Histogram merupakan grafik batang yang dapat menunjukkan seberapa sering suatu nilai yang berbeda terjadi. Histogram lebih sering digunakan untuk melihat distribusi dari suatu data. Berbeda dengan grafik batang, kita perlu menggunakan data numerik dalam membuat sebuah histogram. Berikut adalah data acak yang dibangkitkan dengan perintah <code>rnorm</code>:</p>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="plot-dengan-ggplot2.html#cb101-1"></a>data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dv">5</span>,<span class="dv">2</span>))</span></code></pre></div>
-<p>Kita dapat menggunakan perintah <code>hist</code> yang telah tersedia saat melakukan instalasi <code>R</code>.</p>
+<p>Kita dapat menggunakan perintah <code>hist</code> yang telah tersedia pada program R saat melakukan instalasi program R.</p>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="plot-dengan-ggplot2.html#cb102-1"></a><span class="kw">hist</span>(data<span class="op">$</span>x)</span></code></pre></div>
 <p><img src="dr_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 <p>Selanjutnya kita akan menggunakan perintah yang tersedia pada paket <code>ggplot2</code>.</p>
@@ -250,14 +250,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb103-5"><a href="plot-dengan-ggplot2.html#cb103-5"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span>
 <span id="cb103-6"><a href="plot-dengan-ggplot2.html#cb103-6"></a>p</span></code></pre></div>
 <p><img src="dr_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
-<p>penjelasan:
-* <code>ggplot(data, aes(x))</code> adalah perintah untuk membuat sebuah objek <code>ggplot</code> dari objek <code>x</code> pada data <code>data</code>
-* <code>geom_histogram(binwidth = 1, color = "white", fill= "darkred")</code>
-- <code>geom_histogram()</code> adalah perintah untuk membuat histogram menggunakan <code>ggplot</code>
-- <code>bandwidth</code> adalah lebar dari masing-masing batang
-- <code>fill</code> bertujuan untuk memberi warna batang (dalam kasus ini kita akan berikan warna yang sama untuk semua batang)
-- <code>colour</code> bertujuan untuk memberi warna garis (dalam kasus ini kita akan berikan warna yang sama untuk semua garis)
-* <code>theme_bw()</code> bertujuan untuk menentukan tema <code>black and white</code> pada plot</p>
+<p>penjelasan:</p>
+<ul>
+<li><code>ggplot(data, aes(x))</code> adalah perintah untuk membuat sebuah objek <code>ggplot</code> dari objek <code>x</code> pada data <code>data</code></li>
+<li><code>geom_histogram(binwidth = 1, color = "white", fill= "darkred")</code>
+<ul>
+<li><code>geom_histogram()</code> adalah perintah untuk membuat histogram menggunakan <code>ggplot</code></li>
+<li><code>bandwidth</code> adalah lebar dari masing-masing batang</li>
+<li><code>fill</code> bertujuan untuk memberi warna batang (dalam kasus ini kita akan berikan warna yang sama untuk semua batang)</li>
+<li><code>colour</code> bertujuan untuk memberi warna garis (dalam kasus ini kita akan berikan warna yang sama untuk semua garis)</li>
+</ul></li>
+<li><code>theme_bw()</code> bertujuan untuk menentukan tema <code>black and white</code> pada plot</li>
+</ul>
 <p>Selanjutnya bandingkan dengan histogram yang memiliki <code>bandwith</code> berbeda.</p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="plot-dengan-ggplot2.html#cb104-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(x)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb104-2"><a href="plot-dengan-ggplot2.html#cb104-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">3</span>, </span>
@@ -269,72 +273,134 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="pie-plot" class="section level2">
 <h2><span class="header-section-number">6.3</span> Pie Plot</h2>
+<p>Pie plot atau diagram lingkaran lebih sering digunaan untuk menunjukkan perbandingan antar kategori pada sebuah variabel. Berikut ini adalah data yang akan kita gunakan untuk membuat diagram lingkaran:</p>
 <div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="plot-dengan-ggplot2.html#cb105-1"></a>jumlah &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">23</span>, <span class="dv">57</span>, <span class="dv">20</span>)</span>
 <span id="cb105-2"><a href="plot-dengan-ggplot2.html#cb105-2"></a>label &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Setuju&quot;</span>, <span class="st">&quot;Tidak setuju&quot;</span>, <span class="st">&quot;Tidak tahu&quot;</span>)</span>
 <span id="cb105-3"><a href="plot-dengan-ggplot2.html#cb105-3"></a>x &lt;-<span class="st"> </span><span class="kw">data.frame</span>(label, jumlah)</span></code></pre></div>
 <p>Menggunakan perintah <code>pie</code></p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="plot-dengan-ggplot2.html#cb106-1"></a><span class="kw">pie</span>(x<span class="op">$</span>jumlah, <span class="dt">labels =</span> x<span class="op">$</span>label)</span></code></pre></div>
 <p><img src="dr_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
-<p>Menggunakan paket <code>ggplot2</code></p>
+<p>Selanjutnya berikut ini adalah perintah untuk membuat diagram lingkaran dengan menggunakan paket <code>ggplot2</code></p>
 <div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="plot-dengan-ggplot2.html#cb107-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(x, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">&quot;&quot;</span>, <span class="dt">y=</span>jumlah, <span class="dt">fill=</span>label)) <span class="op">+</span></span>
-<span id="cb107-2"><a href="plot-dengan-ggplot2.html#cb107-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">width =</span> <span class="dv">1</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</span>
+<span id="cb107-2"><a href="plot-dengan-ggplot2.html#cb107-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</span>
 <span id="cb107-3"><a href="plot-dengan-ggplot2.html#cb107-3"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="dt">start =</span> <span class="dv">0</span>)</span></code></pre></div>
 <p><img src="dr_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 <p>penjelasan:</p>
+<ul>
+<li><code>ggplot(x, aes(x="", y=jumlah, fill=label))</code> adalah perintah untuk membuat sebuah objek ggplot dengan data <code>x</code> dengan nilai <code>y</code> adalah jumlah dan <code>label</code> menjadi warna pembeda di setiap nilai pada <code>y</code></li>
+<li><code>geom_bar(stat = "identity")</code>
+<ul>
+<li><code>geom_bar()</code> adalah perintah untuk membuat grafik batang menggunakan <code>ggplot</code></li>
+<li><code>stat = "identity"</code> bertujuan untuk membuat grafik batang dalam bentuk stacked bar chart</li>
+</ul></li>
+<li><code>coord_polar("y", start = 0)</code> bertujuan untuk membentuk stacked pada koordinat polar mengikuti <code>angle = y</code> dan dimulai dari titik nol <code>start = 0</code></li>
+</ul>
 </div>
 <div id="box-plot" class="section level2">
 <h2><span class="header-section-number">6.4</span> Box Plot</h2>
+<p>Box Plot dapat menggambarkan sebaran data yang bersifat <code>numerik</code>. Box plot dibuat dengan menggunakan nilai-nilai pada ukuran pemusatan data. Nilai-nilai tersebut ialah <code>1st quartile</code>, <code>median</code>, <code>3rd quartile</code>, dan <code>interquartile range</code>. Selanjutnya kita akan menggunakan 3 data berbeda yang bersebar normal untuk menunjukkan keunggulan dalam menggunakan box plot.</p>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="plot-dengan-ggplot2.html#cb108-1"></a>x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">250</span>, <span class="dv">9</span>, <span class="dv">3</span>)</span>
 <span id="cb108-2"><a href="plot-dengan-ggplot2.html#cb108-2"></a>y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">250</span>, <span class="dv">4</span>, <span class="dv">1</span>)</span>
 <span id="cb108-3"><a href="plot-dengan-ggplot2.html#cb108-3"></a>z &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">250</span>, <span class="dv">11</span>, <span class="dv">6</span>)</span></code></pre></div>
 <p>Menggunakan perintah <code>boxplot</code></p>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="plot-dengan-ggplot2.html#cb109-1"></a><span class="kw">boxplot</span>(x, y, z,</span>
-<span id="cb109-2"><a href="plot-dengan-ggplot2.html#cb109-2"></a>        <span class="dt">names =</span> <span class="kw">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>, <span class="st">&quot;z&quot;</span>))</span></code></pre></div>
-<p><img src="dr_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
-<p>Menggunakan paket <code>ggplot2</code></p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="plot-dengan-ggplot2.html#cb110-1"></a>data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">label =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>,<span class="st">&quot;z&quot;</span>),</span>
-<span id="cb110-2"><a href="plot-dengan-ggplot2.html#cb110-2"></a>                                 <span class="dt">each=</span><span class="dv">250</span>)),</span>
-<span id="cb110-3"><a href="plot-dengan-ggplot2.html#cb110-3"></a>                   <span class="dt">value =</span> <span class="kw">c</span>(x, y, z))</span>
-<span id="cb110-4"><a href="plot-dengan-ggplot2.html#cb110-4"></a><span class="kw">head</span>(data)</span></code></pre></div>
+<span id="cb109-2"><a href="plot-dengan-ggplot2.html#cb109-2"></a>        <span class="dt">names =</span> <span class="kw">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>, <span class="st">&quot;z&quot;</span>))</span>
+<span id="cb109-3"><a href="plot-dengan-ggplot2.html#cb109-3"></a>data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">label =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>,<span class="st">&quot;z&quot;</span>),</span>
+<span id="cb109-4"><a href="plot-dengan-ggplot2.html#cb109-4"></a>                                 <span class="dt">each=</span><span class="dv">250</span>)),</span>
+<span id="cb109-5"><a href="plot-dengan-ggplot2.html#cb109-5"></a>                   <span class="dt">value =</span> <span class="kw">c</span>(x, y, z))</span>
+<span id="cb109-6"><a href="plot-dengan-ggplot2.html#cb109-6"></a><span class="kw">head</span>(data)</span></code></pre></div>
 <pre><code>##   label     value
-## 1     x 10.848714
-## 2     x  5.298692
-## 3     x  3.097458
-## 4     x  7.659209
-## 5     x  4.669671
-## 6     x  9.391018</code></pre>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="plot-dengan-ggplot2.html#cb112-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>label, <span class="dt">y=</span>value)) <span class="op">+</span></span>
-<span id="cb112-2"><a href="plot-dengan-ggplot2.html#cb112-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">outlier.colour =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
-<span id="cb112-3"><a href="plot-dengan-ggplot2.html#cb112-3"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span>
-<span id="cb112-4"><a href="plot-dengan-ggplot2.html#cb112-4"></a>p</span></code></pre></div>
-<p><img src="dr_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
-</div>
-<div id="line-plot" class="section level2">
-<h2><span class="header-section-number">6.5</span> Line Plot</h2>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="plot-dengan-ggplot2.html#cb113-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">23</span>, <span class="dv">57</span>, <span class="dv">20</span>)</span>
-<span id="cb113-2"><a href="plot-dengan-ggplot2.html#cb113-2"></a><span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Setuju&quot;</span>, <span class="st">&quot;Tidak setuju&quot;</span>, <span class="st">&quot;Tidak tahu&quot;</span>)</span></code></pre></div>
-<p>Menggunakan perintah <code>pie</code></p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="plot-dengan-ggplot2.html#cb114-1"></a><span class="kw">plot</span>(x, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>)</span></code></pre></div>
-<p><img src="dr_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+## 1     x  3.871352
+## 2     x 12.068884
+## 3     x 10.803546
+## 4     x  8.777579
+## 5     x  6.617280
+## 6     x  5.519148</code></pre>
+<p><img src="dr_files/figure-html/unnamed-chunk-43-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>Menggunakan paket <code>ggplot2</code></p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="plot-dengan-ggplot2.html#cb111-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>label, <span class="dt">y=</span>value)) <span class="op">+</span></span>
+<span id="cb111-2"><a href="plot-dengan-ggplot2.html#cb111-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">outlier.colour =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb111-3"><a href="plot-dengan-ggplot2.html#cb111-3"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span>
+<span id="cb111-4"><a href="plot-dengan-ggplot2.html#cb111-4"></a>p</span></code></pre></div>
+<p><img src="dr_files/figure-html/unnamed-chunk-44-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>penjelasan:</p>
+<ul>
+<li><code>ggplot(data, aes(x=label, y=value))</code> adalah perintah untuk membuat sebuah objek ggplot dengan nilai <code>value</code> sebagai <code>y</code> dan <code>label</code> menjadi warna pembeda di setiap nilai <code>y</code> menggunaan data <code>data</code></li>
+<li><code>geom_boxplot(outlier.colour = "red")</code>
+<ul>
+<li><code>geom_boxplot()</code> adalah perintah untuk membuat box plot menggunakan <code>ggplot</code></li>
+<li><code>outlier.colour = "red"</code> memberikan warna merah pada garis box plot (optional)</li>
+</ul></li>
+</ul>
 <p>Menggunakan paket <code>ggplot2</code></p>
 </div>
 <div id="scatter-plot" class="section level2">
-<h2><span class="header-section-number">6.6</span> Scatter Plot</h2>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="plot-dengan-ggplot2.html#cb115-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">23</span>, <span class="dv">57</span>, <span class="dv">20</span>)</span>
-<span id="cb115-2"><a href="plot-dengan-ggplot2.html#cb115-2"></a><span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Setuju&quot;</span>, <span class="st">&quot;Tidak setuju&quot;</span>, <span class="st">&quot;Tidak tahu&quot;</span>)</span></code></pre></div>
-<p>Menggunakan perintah <code>pie</code></p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="plot-dengan-ggplot2.html#cb116-1"></a><span class="kw">pie</span>(x, <span class="dt">labels =</span> <span class="kw">names</span>(x))</span></code></pre></div>
-<p><img src="dr_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
-<p>Menggunakan paket <code>ggplot2</code></p>
+<h2><span class="header-section-number">6.5</span> Scatter Plot</h2>
+<p>Scatter Plot (diagram pencar) merupakan grafik yang dibuat dengan tujuan untuk memasangkan 2 nilai/variabel. Diagram pencar dapat menggambarkan hubungan dari 2 nilai/variabel tersebut. Apabila titik-titik dalam diagram pencar menuju kearah kanan atas dari kiri bawah, maka terdapat hubungan yang positif dari kedua nilai/variabel begitu pula sebaliknya. Kita akan menggunakan data berikut untuk menunjukkan hubungan yang positi dan negatif dari 2 variabel.</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="plot-dengan-ggplot2.html#cb112-1"></a>n &lt;-<span class="st"> </span><span class="dv">10</span></span>
+<span id="cb112-2"><a href="plot-dengan-ggplot2.html#cb112-2"></a>r &lt;-<span class="st"> </span><span class="fl">0.75</span></span>
+<span id="cb112-3"><a href="plot-dengan-ggplot2.html#cb112-3"></a></span>
+<span id="cb112-4"><a href="plot-dengan-ggplot2.html#cb112-4"></a><span class="kw">library</span>(MASS)</span>
+<span id="cb112-5"><a href="plot-dengan-ggplot2.html#cb112-5"></a>data_pos &lt;-<span class="st"> </span><span class="kw">mvrnorm</span>(n, <span class="dt">mu=</span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>), <span class="dt">Sigma=</span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, r, r, <span class="dv">1</span>), <span class="dt">nrow=</span><span class="dv">2</span>))</span>
+<span id="cb112-6"><a href="plot-dengan-ggplot2.html#cb112-6"></a>x_pos &lt;-<span class="st"> </span>data_pos[, <span class="dv">1</span>]</span>
+<span id="cb112-7"><a href="plot-dengan-ggplot2.html#cb112-7"></a>y_pos &lt;-<span class="st"> </span>data_pos[, <span class="dv">2</span>]</span>
+<span id="cb112-8"><a href="plot-dengan-ggplot2.html#cb112-8"></a></span>
+<span id="cb112-9"><a href="plot-dengan-ggplot2.html#cb112-9"></a>data_neg &lt;-<span class="st"> </span><span class="kw">mvrnorm</span>(n, <span class="dt">mu=</span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>), <span class="dt">Sigma=</span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="op">-</span>r, <span class="op">-</span>r, <span class="dv">1</span>), <span class="dt">nrow=</span><span class="dv">2</span>))</span>
+<span id="cb112-10"><a href="plot-dengan-ggplot2.html#cb112-10"></a>x_neg &lt;-<span class="st"> </span>data_neg[, <span class="dv">1</span>]</span>
+<span id="cb112-11"><a href="plot-dengan-ggplot2.html#cb112-11"></a>y_neg &lt;-<span class="st"> </span>data_neg[, <span class="dv">2</span>]</span></code></pre></div>
+<p>Menggunakan perintah <code>plot</code> pada program R:</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="plot-dengan-ggplot2.html#cb113-1"></a><span class="kw">plot</span>(y_pos, x_pos)</span></code></pre></div>
+<p><img src="dr_files/figure-html/unnamed-chunk-46-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="plot-dengan-ggplot2.html#cb114-1"></a><span class="kw">plot</span>(y_neg, x_neg)</span></code></pre></div>
+<p><img src="dr_files/figure-html/unnamed-chunk-46-2.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>Gambar pertama menunjukkan adanya hubungan yang positif pada pariabel <code>y_pos</code> dan <code>x_pos</code>. Sedangkan pada gambar kedua adalah sebaliknya, yaitu hubungan yang negatif. selanjutnya kita akan membangun diagram pencar menggunakan paket <code>ggplot2</code>.</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="plot-dengan-ggplot2.html#cb115-1"></a>data_pos &lt;-<span class="st"> </span><span class="kw">data.frame</span>(data_pos)</span>
+<span id="cb115-2"><a href="plot-dengan-ggplot2.html#cb115-2"></a><span class="kw">colnames</span>(data_pos) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>)</span>
+<span id="cb115-3"><a href="plot-dengan-ggplot2.html#cb115-3"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(data_pos, <span class="kw">aes</span>(x,y))</span>
+<span id="cb115-4"><a href="plot-dengan-ggplot2.html#cb115-4"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb115-5"><a href="plot-dengan-ggplot2.html#cb115-5"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span>lm) <span class="op">+</span></span>
+<span id="cb115-6"><a href="plot-dengan-ggplot2.html#cb115-6"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="dr_files/figure-html/unnamed-chunk-47-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>penjelasan:</p>
+<ul>
+<li><code>data_pos</code> adalah objek yang memuat <code>data_pos</code> baru setelah diubah kedalam bentuk <code>data frame</code></li>
+<li><code>colnames()</code> adalah perintah untuk memberikan nama kolom/variabel pada <code>data frame</code></li>
+<li><code>ggplot(data_pos, aes(x,y))</code> adalah perintah untuk membuat sebuah objek ggplot dengan nilai <code>value</code> sebagai <code>y</code> dan <code>label</code> menjadi warna pembeda di setiap nilai <code>y</code> menggunaan data <code>data</code></li>
+<li><code>geom_point()</code> adalah perintah untuk membuat diagram pencar
+<ul>
+<li><code>size=2</code> adalah perintah untuk mengubah ukuran titik diagram pencar menjadi sebesar 2 poin</li>
+</ul></li>
+<li><code>geom_smooth(method=lm)</code> adalah perintah untuk membuat garis regresi linier sebagai penegas hubungan antara 2 variabel (optional)</li>
+</ul>
 </div>
-<div id="area-plot" class="section level2">
-<h2><span class="header-section-number">6.7</span> Area Plot</h2>
+<div id="line-plot" class="section level2">
+<h2><span class="header-section-number">6.6</span> Line Plot</h2>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="plot-dengan-ggplot2.html#cb117-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">23</span>, <span class="dv">57</span>, <span class="dv">20</span>)</span>
 <span id="cb117-2"><a href="plot-dengan-ggplot2.html#cb117-2"></a><span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Setuju&quot;</span>, <span class="st">&quot;Tidak setuju&quot;</span>, <span class="st">&quot;Tidak tahu&quot;</span>)</span></code></pre></div>
 <p>Menggunakan perintah <code>pie</code></p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="plot-dengan-ggplot2.html#cb118-1"></a><span class="kw">pie</span>(x, <span class="dt">labels =</span> <span class="kw">names</span>(x))</span></code></pre></div>
-<p><img src="dr_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="plot-dengan-ggplot2.html#cb118-1"></a><span class="kw">plot</span>(x, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>)</span></code></pre></div>
+<p><img src="dr_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+</div>
+<div id="area-plot" class="section level2">
+<h2><span class="header-section-number">6.7</span> Area Plot</h2>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="plot-dengan-ggplot2.html#cb119-1"></a><span class="kw">data</span>(<span class="st">&quot;diamonds&quot;</span>)</span>
+<span id="cb119-2"><a href="plot-dengan-ggplot2.html#cb119-2"></a><span class="kw">head</span>(diamonds)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 10
+##   carat cut       color clarity depth table price     x     y     z
+##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 0.23  Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+## 2 0.21  Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+## 3 0.23  Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+## 4 0.290 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+## 5 0.31  Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+## 6 0.24  Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48</code></pre>
+<p>Note: data <code>diamonds</code> adalah data yang sudah tersedia dalam program R</p>
 <p>Menggunakan paket <code>ggplot2</code></p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="plot-dengan-ggplot2.html#cb121-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x =</span> price, <span class="dt">fill =</span> cut))</span>
+<span id="cb121-2"><a href="plot-dengan-ggplot2.html#cb121-2"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_area</span>(<span class="dt">stat =</span> <span class="st">&quot;bin&quot;</span>)</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="dr_files/figure-html/unnamed-chunk-51-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>

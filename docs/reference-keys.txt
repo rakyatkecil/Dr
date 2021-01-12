@@ -27,9 +27,9 @@ operator-logika
 relational
 plot-dengan-ggplot2
 bar-plot
-grafik-histogram
+histogram
 pie-plot
 box-plot
-line-plot
 scatter-plot
+line-plot
 area-plot
